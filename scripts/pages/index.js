@@ -1,5 +1,19 @@
+// let roro = [];
+
+// async function toto(){
+//     await fetch('../data/photographers.json')
+//             .then(response=> response.json())
+//             .then(data  =>(roro= data.photographers))
+
+//             console.log(roro);
+// }
+
+//    toto()    
+// console.log(roro);
+  
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
+       
         const photographers = [
             {
                 "name": "Ma data test",
@@ -20,10 +34,20 @@
                 "portrait": "account.png"
             },
         ]
-        // et bien retourner le tableau photographers seulement une fois
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
+
+
+        // et bien retourner le tableau photographers seulement une fois 
+        
+        // let object = {clé: valeur};
+
+        return(
+                {
+                  photographers: [... photographers, ... photographers, ... photographers]
+                }
+        )
+            
     }
+
 
 
     
