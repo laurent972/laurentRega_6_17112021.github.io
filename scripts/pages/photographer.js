@@ -19,6 +19,8 @@ async function getPictures(){
 }
 getPictures()
 
+
+//
 const query_url_id = window.location.search;
 console.log(query_url_id);
 
