@@ -1,4 +1,4 @@
-let photographers= []
+let photographers= [];
 async function getPhotographers() {
 
     await fetch('../data/photographers.json')
@@ -8,12 +8,19 @@ async function getPhotographers() {
      return photographers;
  }
 
+let medias=[];
+async function getPictures(){
+    await fetch('../data/photographers.json')
+                     .then((response)=>response.json())
+                     //.then((data)=> medias = data.medias);
+                     .then((data)=> medias=data.media)
+   // console.log(medias);
+     return medias;
+}
+getPictures()
+
 const query_url_id = window.location.search;
 console.log(query_url_id);
-
-// Récupérer ID
-const idFiche = query_url_id.slice(4);
-console.log(idFiche);
 
 const urlSearchParams = new URLSearchParams(query_url_id);
 const _id = urlSearchParams.get("id");
@@ -21,9 +28,17 @@ console.log(_id);
 
 async function displayFiche(){
     await getPhotographers()
-    const resultat = photographers.find( photographer =>photographer.id == _id);
-     console.log(resultat);
+    const fiche = photographers.find( photographer =>photographer.id == _id);
+   // return fiche;
+   console.log(fiche);
 }
-
 displayFiche()
-   
+
+async function displayGallery(){
+    await getPictures();
+    let gallery=[];
+    gallery = medias.filter(media=>media.photographerId == _id);
+    //return gallery;
+    console.log(gallery);
+}
+displayGallery()
