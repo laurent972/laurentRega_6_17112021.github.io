@@ -15,6 +15,7 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div class="photographer-gallery"></div>    
     </main>
     <div id="contact_modal">
 			<div class="modal">
@@ -23,7 +24,7 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
-					<div>
+					<div class="contact">
 						<label>Prénom</label>
 						<input />
 					</div>
@@ -34,5 +35,6 @@
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/factories/fiche.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/utils/lightbox.js" defer></script>
   </body>
 </html>
