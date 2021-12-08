@@ -1,6 +1,6 @@
    
    async function getPhotographers() {
-    await fetch('laurentRega_6_17112021.github.io/data/photographers.json')
+    await fetch('/laurentRega_6_17112021.github.io/data/photographers.json')
       // await fetch('../data/photographers.json')
                         .then((response) => response.json())
                         .then((data) => photographers = data.photographers);
