@@ -1,7 +1,7 @@
 let photographers= [];
 async function getPhotographers() {
 
-    await fetch('../data/photographers.json')
+    await fetch('/data/photographers.json')
                      .then((response)=>response.json())
                      .then((data)=> photographers = data.photographers);
      //console.log(photographers);
@@ -10,7 +10,7 @@ async function getPhotographers() {
 
 let medias=[];
 async function getPictures(){
-    await fetch('../data/photographers.json')
+    await fetch('/data/photographers.json')
                      .then((response)=>response.json())
                      //.then((data)=> medias = data.medias);
                      .then((data)=> medias=data.media)
