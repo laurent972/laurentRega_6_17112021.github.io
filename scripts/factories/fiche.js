@@ -43,8 +43,8 @@ function galleryFactory(data){
             let likes = element.likes;
             galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
-                    <a href="/assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
-                    <img src="/assets/photographers/${photographerId}/${linked}" alt="${title}" width="150">
+                    <a href="assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
+                    <img src="assets/photographers/${photographerId}/${linked}" alt="${title}" width="150">
                     </a>
                     <h3>${title}</h3>
                     <p>${likes}</p>
