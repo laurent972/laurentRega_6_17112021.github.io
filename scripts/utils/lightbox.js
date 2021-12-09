@@ -12,7 +12,7 @@ async function lightbox() {
                 newLightbox.classList.add('lightbox');
                 container.appendChild(newLightbox);
 
-                if(str.includes('video')){ //Distinction image / video au chargement de la lightBox
+                if(str.includes('video')){  //Distinction image / video au chargement de la lightBox
                     previewVideo ();                   
                 }else{ 
                     preview();
@@ -39,6 +39,7 @@ async function lightbox() {
                     newImg.appendChild(imgFull);
                     newLightbox.appendChild(newImg);
                 }
+
 
                 const lightbox = document.querySelector('.lightbox');
                 lightbox.innerHTML +=`

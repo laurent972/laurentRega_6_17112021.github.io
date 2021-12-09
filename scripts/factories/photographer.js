@@ -10,7 +10,7 @@ function photographerFactory(data) {
         img.setAttribute("src", picture);
         img.setAttribute("alt", `Portrait de ${name}, ${city}`);
         const h2 = document.createElement( 'h2' );
-        const location = document.createElement('div','class="info"');
+        const location = document.createElement('div');
         const tarif = document.createElement('p');
         const info = document.createElement('p');
         const href= document.createElement('a');
