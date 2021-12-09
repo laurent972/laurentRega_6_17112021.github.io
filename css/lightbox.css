@@ -30,7 +30,7 @@
 .lightbox__next:hover,
 .lightbox__prev:hover{
     opacity: 1;
-    transform: scale(1.1,1.1);
+    
 }
 
 .lightbox__next{
@@ -38,6 +38,7 @@
     right: 2%;
     transform: rotate(180deg);
 }
+
 
 .lightbox__close{
     width: 20px;
@@ -56,6 +57,7 @@
     opacity:1;
 }
 
+.lightbox__container video,
 .lightbox__container img{
     max-width: 100%;
     height: 95vh;

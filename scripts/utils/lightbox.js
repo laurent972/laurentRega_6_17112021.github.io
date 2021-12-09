@@ -1,130 +1,92 @@
-// // class Lightbox{
-  
-// //     static init(){
-// //         links = document.querySelectorAll('a[href$=".jpg"],a[href$=".mp4"]')
-// //        .forEach(link => link.addEventListener('click', e =>{
-// //                 e.preventDefault()
-// //                 new Lightbox(e.currentTarget.getAttribute('href'))
-// //         }));
-// //     }
+async function lightbox() {
+    await displayGallery();
+    const gallery = document.querySelectorAll('.gallery-img-link');
+    window.addEventListener('load', () => {
+        for (let i = 0; i < gallery.length; i++) {
+             let str =  gallery[i].href; //Récupération de la chaine de caractère lien           
+            gallery[i].addEventListener('click', (e) => {
+                e.preventDefault();
+                let currentLink = i;
+                let container = document.body;
+                let newLightbox = document.createElement('div'); //création de ma lightbox
+                newLightbox.classList.add('lightbox');
+                container.appendChild(newLightbox);
 
-// //     //paramètre string
-// //     constructor(url){
-// //         this.element = this.buildDOM(url);
-// //         document.body.appendChild(this.element);
-// //     }
+                if(str.includes('video')){ //Distinction image / video au chargement de la lightBox
+                    previewVideo ();                   
+                }else{ 
+                    preview();
+                }
 
-// //     loadImage(url){
-// //         const image = new Image();
-// //         const container = this.element.querySelector('.lightbox__container')
-// //         image.onload = function(){
+                function previewVideo (){
+                    let newImg = document.createElement("div"); 
+                    newImg.classList.add('lightbox__container')
+                    let video = document.createElement('video');
+                    video.setAttribute('controls', '');
+                    let source = document.createElement('source');
+                    source.setAttribute('src', '/assets/photographers/'+logId+'/video.mp4');
+                    source.setAttribute('type', 'video/mp4');
+                    newImg.appendChild(video);
+                    video.appendChild(source);
+                    newLightbox.appendChild(newImg);
+                }
+                
+                function preview (){
+                    let newImg = document.createElement("div"); 
+                    newImg.classList.add('lightbox__container')
+                    let imgFull = document.createElement('img');
+                    imgFull.setAttribute('src', gallery[currentLink].href);
+                    newImg.appendChild(imgFull);
+                    newLightbox.appendChild(newImg);
+                }
 
-// //         } 
-// //     }
+                const lightbox = document.querySelector('.lightbox');
+                lightbox.innerHTML +=`
+                        <button class="lightbox__close">Fermer</button>
+                        <button class="lightbox__next">Suivant</button>
+                        <button class="lightbox__prev">Précédent</button>
+                `; 
 
-// //     buildDOM(url){
-// //         const dom = document.createElement('div');
-// //         dom.classList.add('lightbox');
-// //         dom.innerHTML = `
-        
-// //         <button class="lightbox__close">Fermer</button>
-// //         <button class="lightbox__next">Suivant</button>
-// //         <button class="lightbox__prev">Précédent</button>
-// //         <div class="lightbox__container">
-// //           <img src="${url}">
-// //         </div>
+                //Fermeture de la lightbox
+                const close = document.querySelector('.lightbox__close');
+                close.addEventListener('click', (e) => {
+                    document.querySelector('.lightbox').remove();  
+                })
 
-
-// //         `
-// //         return dom
-// //     }
-
-// // }
-
-
-
-
-// let getLatestOpenedImg;
-
-// async function getLinks(){
-//     await displayGallery();
-//     let galleryImages = document.querySelectorAll('.gallery-img-link');
-//     if(galleryImages){
-//         galleryImages.forEach(function (galleryImage, index) {
+                //Affichage image precedente
+                const previousButton = document.querySelector('.lightbox__prev');
+                previousButton.addEventListener('click', (e) =>{
+                    document.querySelector('.lightbox__container').remove(); 
+                    currentLink--;
+                    if(currentLink == 0){
+                        preview();
+                        document.querySelector('.lightbox__prev').remove(); 
+                    }else{
+                        console.log(currentLink);
+                        preview();
+                    }    
+                });
+                //Affichage image suivante
+                const nextButton = document.querySelector('.lightbox__next');
+                nextButton.addEventListener('click', (e) =>{
+                    document.querySelector('.lightbox__container').remove(); 
+                    currentLink++;
+                    if(currentLink>= gallery.length-1){
+                        preview();
+                        document.querySelector('.lightbox__next').remove(); 
+                    }else{
+                        preview();
+                    }
+                    console.log(currentLink);
+                    
+                });
+                
+            })
             
-//             galleryImage.addEventListener('click', e => {
-//              e.preventDefault();
-//                let getFullImgUrl = galleryImage.href; // je récupère l'url de chaque image
-//                console.log(galleryImage.href);
-//                getLatestOpenedImg = index + 1;
-               
-
-//                let container = document.body;
-//                let newImageWindow = document.createElement('div'); //création de ma lightbox
-//                newImageWindow.classList.add('lightbox');
-             
-//                newImageWindow.setAttribute('id', "current-img");
-//                container.appendChild(newImageWindow); //injection de ma lightbox
-
-//                let newImg = document.createElement("div"); 
-//                newImg.classList.add('lightbox__container')
-//               // newImg.setAttribute('onclick', "closeImg()");
-//                let imgFull = document.createElement('img');
-//                imgFull.setAttribute('src', getFullImgUrl);
-//                newImg.appendChild(imgFull);
-//                newImageWindow.appendChild(newImg);
-       
-//                const lightbox = document.querySelector('.lightbox');
-//                lightbox.innerHTML +=`
-//                     <button class="lightbox__close">Fermer</button>
-//                     <button onclick="changeImg(1)" class="lightbox__next">Suivant</button>
-//                     <button class="lightbox__prev">Précédent</button>
-//                `;  
-               
-            
-//               })
-//               console.log(getLatestOpenedImg);
-//            }) 
-           
-//     } 
-//     return {getLatestOpenedImg, galleryImages}
-             
-//     }
-    
-//     console.log(getLatestOpenedImg);
-
-//    async function changeImg(changeDir){
-//         await getLinks()
-//         let galleryImages = document.querySelectorAll('.gallery-img-link');
-       
-//          document.querySelector('#current-img').remove();
-//          let getImgWindow = document.querySelector('.lightbox__container');
-//          let newImg = document.createElement("img");
-//          getImgWindow.appendChild(newImg);
-     
-//          let calcNewImg;
-//          if(changeDir === 1){
-//              calcNewImg = getLatestOpenedImg + 1;
-//              if(calcNewImg > galleryImages.length){
-//                  calcNewImg = 1;
-//              }
-//          }else if(changeDir === 0){
-//              calcNewImg = getLatestOpenedImg - 1;
-//              if(calcNewImg < 1){
-//                  calcNewImg = galleryImages.length;
-//              }
-//          }
-//          console.log(galleryImages[calcNewImg].href);
-//          newImg.setAttribute('src', galleryImages[calcNewImg].href);
-//          newImg.setAttribute('id', "current-img");
-//      }
+        }
+    })
+}
+lightbox();
 
 
-//   getLinks();
-
-// function closeImg(){
-//     document.querySelector('.lightbox').remove();
-//     document.querySelector('.lightbox__prev').remove();
-//     document.querySelector('.lightbox__next').remove();
-// }
 

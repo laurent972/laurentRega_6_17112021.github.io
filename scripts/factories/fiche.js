@@ -31,7 +31,6 @@ function ficheFactory(data) {
      
 
 function galleryFactory(data){
-
     function setPictures(){
         const galleryDisplay = document.createElement('ul');
         // rajouter une classe
@@ -44,15 +43,13 @@ function galleryFactory(data){
             galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
                     <a href="assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
-                    <img src="assets/photographers/${photographerId}/${linked}" alt="${title}" width="150">
+                    <img src="assets/photographers/${photographerId}/${linked}" alt="Photograph: ${title}" width="150" title="${title}">
                     </a>
                     <h3>${title}</h3>
                     <p>${likes}</p>
                 </li>
             `
         });
-       
-
         return (galleryDisplay);
     }
 
