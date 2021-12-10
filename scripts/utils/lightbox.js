@@ -1,7 +1,6 @@
 async function lightbox() {
     await displayGallery();
     const gallery = document.querySelectorAll('.gallery-img-link');
-    window.addEventListener('load', () => {
         for (let i = 0; i < gallery.length; i++) {
              let str =  gallery[i].href; //Récupération de la chaine de caractère lien           
             gallery[i].addEventListener('click', (e) => {
@@ -12,25 +11,26 @@ async function lightbox() {
                 newLightbox.classList.add('lightbox');
                 container.appendChild(newLightbox);
 
-                if(str.includes('video')){  //Distinction image / video au chargement de la lightBox
+                if(str.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
                     previewVideo ();                   
                 }else{ 
                     preview();
                 }
 
+                //Affichage video
                 function previewVideo (){
                     let newImg = document.createElement("div"); 
                     newImg.classList.add('lightbox__container')
                     let video = document.createElement('video');
                     video.setAttribute('controls', '');
                     let source = document.createElement('source');
-                    source.setAttribute('src', '/assets/photographers/'+logId+'/video.mp4');
+                    source.setAttribute('src', gallery[currentLink].href);
                     source.setAttribute('type', 'video/mp4');
                     newImg.appendChild(video);
                     video.appendChild(source);
                     newLightbox.appendChild(newImg);
                 }
-                
+                //Affichage image
                 function preview (){
                     let newImg = document.createElement("div"); 
                     newImg.classList.add('lightbox__container')
@@ -40,7 +40,7 @@ async function lightbox() {
                     newLightbox.appendChild(newImg);
                 }
 
-
+                //Injection des flèches
                 const lightbox = document.querySelector('.lightbox');
                 lightbox.innerHTML +=`
                         <button class="lightbox__close">Fermer</button>
@@ -52,18 +52,17 @@ async function lightbox() {
                 const close = document.querySelector('.lightbox__close');
                 close.addEventListener('click', (e) => {
                     document.querySelector('.lightbox').remove();  
-                })
+                });
 
                 //Affichage image precedente
                 const previousButton = document.querySelector('.lightbox__prev');
                 previousButton.addEventListener('click', (e) =>{
                     document.querySelector('.lightbox__container').remove(); 
-                    currentLink--;
+                    currentLink--; //Décrementation lien précédent
                     if(currentLink == 0){
                         preview();
                         document.querySelector('.lightbox__prev').remove(); 
                     }else{
-                        console.log(currentLink);
                         preview();
                     }    
                 });
@@ -71,21 +70,16 @@ async function lightbox() {
                 const nextButton = document.querySelector('.lightbox__next');
                 nextButton.addEventListener('click', (e) =>{
                     document.querySelector('.lightbox__container').remove(); 
-                    currentLink++;
+                    currentLink++; //Incrementation lien suivant
                     if(currentLink>= gallery.length-1){
                         preview();
                         document.querySelector('.lightbox__next').remove(); 
                     }else{
                         preview();
                     }
-                    console.log(currentLink);
-                    
-                });
-                
-            })
-            
+                });               
+            })           
         }
-    })
 }
 lightbox();
 

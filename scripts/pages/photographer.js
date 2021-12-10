@@ -4,7 +4,6 @@ const _id = urlSearchParams.get("id");
 
 let photographers= [];
 let medias=[];
-
 //Appel des photographes
 async function getPhotographers() {
             await fetch('data/photographers.json')
@@ -24,11 +23,11 @@ async function getPictures(){
 //Affichage de la fiche photographe
 async function displayFiche(){
     const photographHeader = document.querySelector('.photograph-header');
-    await getPhotographers()
+    await getPhotographers();
     const fiche = photographers.find( photographer =>photographer.id == _id);
     const photographerDetail = ficheFactory(fiche);
     const getFicheDOM = photographerDetail.getFicheDOM();
-    photographHeader.appendChild(getFicheDOM)
+    photographHeader.appendChild(getFicheDOM);
 }
 displayFiche();
 
@@ -44,14 +43,14 @@ async function displayGallery(){
     filterLikes.addEventListener('change', (e)=>{
                 if(e.target.value === 'likes'){
                    gallery = gallery.sort(byLikes); //Tri par likes
-                   logGallery()
+                   logGallery();
                    console.log(gallery);
                 }else if(e.target.value === 'title'){
                     gallery = gallery.sort(byTitles); //Tri par titre
-                    logGallery()
+                    logGallery();
                     console.log(gallery);
                 }else{
-                    logGallery()
+                    logGallery();
                 }
             });
 
