@@ -46,20 +46,20 @@ function galleryFactory(data){
             let photographerId = element.photographerId;
             let likes = element.likes;
 
-            galleryDisplay.innerHTML +=`
+            if(element.hasOwnProperty('video')){ 
+                galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
-                    <a href="assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
+                    <a href="assets/photographers/${photographerId}/${linkedVideo}" class="gallery-img-link">
                     <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph: ${title}" width="150" title="${title}">
                     </a>
                     <h3>${title}</h3>
                     <p>${likes}</p>
                 </li>
             `;
-
-            if(element.hasOwnProperty('video') ){ 
+            }else {
                 galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
-                    <a href="assets/photographers/${photographerId}/${linkedVideo}" class="gallery-img-link">
+                    <a href="assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
                     <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph: ${title}" width="150" title="${title}">
                     </a>
                     <h3>${title}</h3>
