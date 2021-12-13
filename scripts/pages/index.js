@@ -1,11 +1,9 @@
-   
    async function getPhotographers() {
     await fetch('data/photographers.json')
                         .then((response) => response.json())
                         .then((data) => photographers = data.photographers);
         return photographers;
     };
-
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");

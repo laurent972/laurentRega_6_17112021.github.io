@@ -7,6 +7,7 @@ function ficheFactory(data) {
     function getFicheDOM() {
         const contact = document.createElement( 'article' );
         const img = document.createElement( 'img' );
+        const spanImg = document.createElement('span');
         img.setAttribute("src", picture);
         img.setAttribute("alt", `Portrait de ${name}, ${city}-${country}`);
         const h2 = document.createElement( 'h2' );
@@ -17,15 +18,16 @@ function ficheFactory(data) {
         blocInfo.classList.add('portrait-info');
 
         h2.textContent = name;
-        location.textContent = city +' - '+ country;
+        location.textContent = city +' , '+ country;
         info.textContent = tagline;
 
         contact.appendChild(blocInfo);
+        spanImg.appendChild(img); 
+        contact.appendChild(spanImg);
         blocInfo.appendChild(h2);
         blocInfo.appendChild(location);
         blocInfo.appendChild(info);
-        contact.appendChild(img);
-        contact.appendChild(tarif)
+        contact.appendChild(tarif);
 
         return (contact);
      }
@@ -34,10 +36,10 @@ function ficheFactory(data) {
 }
     
 function galleryFactory(data){
+    const galleryDisplay = document.createElement('ul');
+    galleryDisplay.classList.add('gal');
+  
     function setPictures(){
-        const galleryDisplay = document.createElement('ul');
-        galleryDisplay.classList.add('gal');
-
         //construction et injection de la galerie
         data.forEach(element => {   
             let linked = element.image;
@@ -45,7 +47,6 @@ function galleryFactory(data){
             let title = element.title;
             let photographerId = element.photographerId;
             let likes = element.likes;
-
             if(element.hasOwnProperty('video')){ 
                 galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
@@ -67,7 +68,6 @@ function galleryFactory(data){
                 </li>
             `;
             }
-
         });
         return (galleryDisplay);
     }

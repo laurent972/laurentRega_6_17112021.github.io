@@ -2,6 +2,8 @@ const query_url_id = window.location.search;
 const urlSearchParams = new URLSearchParams(query_url_id);
 const _id = urlSearchParams.get("id");
 
+
+
 let photographers= [];
 let medias=[];
 //Appel des photographes
@@ -31,40 +33,54 @@ async function displayFiche(){
 }
 displayFiche();
 
+
+
 //Affichage de la galerie d'images
 async function displayGallery(){
     await getPictures();
-    const photographerGallery = document.querySelector('.photographer-gallery');
-    const filterLikes = document.querySelector('#tri-select');
     let gallery=[];
     let logId;
-    gallery = medias.filter(media=>media.photographerId == _id); //Récupération des photos
-    //Filtre d'affichage de la galerie d'images 
-    filterLikes.addEventListener('change', (e)=>{
-                if(e.target.value === 'likes'){
-                   gallery = gallery.sort(byLikes); //Tri par likes
-                   logGallery();
-                   console.log(gallery);
-                }else if(e.target.value === 'title'){
-                    gallery = gallery.sort(byTitles); //Tri par titre
-                    logGallery();
-                    console.log(gallery);
-                }else{
-                    logGallery();
-                }
-            });
-
-    function logGallery(){
+    //Filtre d'affichage de la galerie d'images
+    if(query_url_id.includes('&sortByLikes')){
+        gallery = medias.filter(media=>media.photographerId == _id);
+        gallery = gallery.sort(byLikes);//Tri par likes
+    }else if(query_url_id.includes('&sortByTitles')){
+        gallery = medias.filter(media=>media.photographerId == _id);
+        gallery = gallery.sort(byTitles);//Tri par likes
+    }else{
+        gallery = medias.filter(media=>media.photographerId == _id);
+    }
+ 
+    const photographerGallery = document.querySelector('.photographer-gallery');
         const uniqGallery = galleryFactory(gallery);
         const setPictures = uniqGallery.setPictures();
         photographerGallery.appendChild(setPictures);
         logId=gallery[0].photographerId;
-    }
-    logGallery(); //Chargement de la galerie au chargement de la page
-    return logId; //Récupération du currentID pour affichage des liens relatif au photographe
+ 
+    return (logId); //Récupération du currentID pour affichage des liens relatif au photographe
 }
 
+//Fonction de tri affichage
+async function tri(){
+    const filterLike = document.querySelector('.like');
+    const filterTitles = document.querySelector('.title');
+    const filterBase = document.querySelector('.base');
+    const linkSortLikes  = `photographer.html?id=${_id}&sortByLikes`;
+    const linkSortTitles  = `photographer.html?id=${_id}&sortByTitles`;
+    const linkSort  = `photographer.html?id=${_id}`;
 
+    filterLike.addEventListener('click', (e)=>{ 
+        location.href = linkSortLikes;       
+    });
 
+    filterTitles.addEventListener('click', (e)=>{ 
+        location.href = linkSortTitles;       
+    });
+
+    filterBase.addEventListener('click', (e)=>{ 
+        location.href = linkSort;       
+    });
+}
+tri();
 
 
