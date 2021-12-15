@@ -5,30 +5,37 @@ function ficheFactory(data) {
 
     //Construction du bloc affichage fiche 
     function getFicheDOM() {
+        const main = document.querySelector('main');
+        const photographHeader = document.querySelector('.photograph-header');
         const contact = document.createElement( 'article' );
+        contact.classList.add('portrait-info');
+        const count = document.createElement('div');
+        count.classList.add('bloc-count');
         const img = document.createElement( 'img' );
         const spanImg = document.createElement('span');
         img.setAttribute("src", picture);
         img.setAttribute("alt", `Portrait de ${name}, ${city}-${country}`);
-        const h2 = document.createElement( 'h2' );
-        const location = document.createElement('div','.info');
+        const h1 = document.createElement( 'h1' );
+        const location = document.createElement('p');
+        location.classList.add('location');
         const tarif = document.createElement('p');
         const info = document.createElement('p');
         const blocInfo = document.createElement('div');
         blocInfo.classList.add('portrait-info');
 
-        h2.textContent = name;
+        h1.textContent = name;
         location.textContent = city +' , '+ country;
         info.textContent = tagline;
+        tarif.textContent = price+'€/jour';
 
-        contact.appendChild(blocInfo);
+        
         spanImg.appendChild(img); 
-        contact.appendChild(spanImg);
-        blocInfo.appendChild(h2);
-        blocInfo.appendChild(location);
-        blocInfo.appendChild(info);
-        contact.appendChild(tarif);
-
+        photographHeader.appendChild(spanImg);
+        contact.appendChild(h1);
+        contact.appendChild(location);
+        contact.appendChild(info);
+        count.appendChild(tarif);
+        main.appendChild(count);
         return (contact);
      }
     
@@ -51,20 +58,24 @@ function galleryFactory(data){
                 galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
                     <a href="assets/photographers/${photographerId}/${linkedVideo}" class="gallery-img-link">
-                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph: ${title}" width="150" title="${title}">
+                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph ${title}" width="150" title="${title}">
                     </a>
+                   <div class="gal-info">
                     <h3>${title}</h3>
                     <p>${likes}</p>
+                    </div>
                 </li>
             `;
             }else {
                 galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
                     <a href="assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
-                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph: ${title}" width="150" title="${title}">
+                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph ${title}" width="150" title="${title}">
                     </a>
+                    <div class="gal-info">
                     <h3>${title}</h3>
                     <p>${likes}</p>
+                    </div>
                 </li>
             `;
             }

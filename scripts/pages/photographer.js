@@ -6,11 +6,12 @@ const _id = urlSearchParams.get("id");
 
 let photographers= [];
 let medias=[];
+let count= 0;
 //Appel des photographes
 async function getPhotographers() {
             await fetch('data/photographers.json')
                      .then((response)=>response.json())
-                     .then((data)=> photographers = data.photographers);
+                     .then((data)=> photographers = data.photographers)
      return photographers;
  }
 
@@ -50,37 +51,22 @@ async function displayGallery(){
     }else{
         gallery = medias.filter(media=>media.photographerId == _id);
     }
- 
+    gallery.map(gallery=>count += gallery.likes);
+    
     const photographerGallery = document.querySelector('.photographer-gallery');
+   
         const uniqGallery = galleryFactory(gallery);
         const setPictures = uniqGallery.setPictures();
         photographerGallery.appendChild(setPictures);
         logId=gallery[0].photographerId;
+       
+        const blocCount = document.querySelector('.bloc-count');
+        blocCount.innerHTML+=`<p class="likeCount">${count}</p>`;
+        
  
-    return (logId); //Récupération du currentID pour affichage des liens relatif au photographe
+    return (logId, count); //Récupération du currentID pour affichage des liens relatif au photographe
 }
 
-//Fonction de tri affichage
-async function tri(){
-    const filterLike = document.querySelector('.like');
-    const filterTitles = document.querySelector('.title');
-    const filterBase = document.querySelector('.base');
-    const linkSortLikes  = `photographer.html?id=${_id}&sortByLikes`;
-    const linkSortTitles  = `photographer.html?id=${_id}&sortByTitles`;
-    const linkSort  = `photographer.html?id=${_id}`;
-
-    filterLike.addEventListener('click', (e)=>{ 
-        location.href = linkSortLikes;       
-    });
-
-    filterTitles.addEventListener('click', (e)=>{ 
-        location.href = linkSortTitles;       
-    });
-
-    filterBase.addEventListener('click', (e)=>{ 
-        location.href = linkSort;       
-    });
-}
 tri();
 
 

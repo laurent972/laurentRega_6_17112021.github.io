@@ -32,7 +32,50 @@ h1 {
     margin-top: 100px;
 }
 
-.photograph-header article,
+.photograph-header{
+  background-color: #FAFAFA;
+    height: 300px;
+    display: grid; 
+    grid-template-columns: 2fr 1fr 1.5fr; 
+    grid-template-rows: 1fr; 
+    gap: 1em 1em; 
+    grid-template-areas: 
+      "item1 item2 item3"; 
+    align-items: center;   
+}
+
+.photograph-header article{
+  grid-area: item1;
+  text-align: left;
+}
+
+.photograph-header span{
+  grid-area: item3;
+}
+
+.photograph-header button{
+  grid-area: item2;
+  margin: 0 auto;
+}
+
+
+.photograph-header article h1{
+  font-size: 2.5em;
+  margin-right: 0;
+  color: #D3573C;
+  margin-bottom: 5px;
+}
+
+.photograph-header article p{
+  margin: 0;
+}
+
+.photograph-header article p.location{
+  font-size: 1.5em;
+  color: #901C1C;
+}
+
+
 .photographer_section article {
     justify-self: center;
     display: flex;
@@ -41,6 +84,7 @@ h1 {
     flex-direction: column;
     text-align: center;
 }
+
 
 .photographer_section article div {
     color: #901C1C;
@@ -68,7 +112,7 @@ h1 {
     text-decoration: none;
 }
 
-.photograph-header article img,
+.photograph-header img,
 .photographer_section article img {
     width: 100%;
     object-fit: cover;
@@ -76,7 +120,7 @@ h1 {
    
 }
 
-.photograph-header article span,
+.photograph-header span,
 .photographer_section article span {
     width: 220px;
     height:220px;
@@ -95,8 +139,148 @@ ul.gal{
     flex-wrap: wrap;
     justify-content: space-between;
     list-style: none;
+    
 }
 
 .gal li{
     width: 33.33%;
+   clear: both;
+   margin-bottom:20px;
+}
+
+.gal-info{
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.gal li h3{
+  color:#901C1C; 
+}
+
+.gal li p{
+  background: url(../assets/images/icons8-aimer-30-5.png)no-repeat;
+  background-size:  20px 20px;
+  background-position: center right;
+  padding-right:22px;
+  color:#901C1C; 
+}
+
+
+.gal a{
+  width: 220px;
+  height:220px;
+  overflow: hidden;
+  background:#fff;
+  border-radius: 10px;
+  display: block;
+  margin:0 auto;
+
+}
+.gal a img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.bloc-count{
+  background:#D3573C;
+  width: 200px;
+  padding: 12px 20px;
+  height: 30px;
+  border-radius: 10px;
+  position: fixed;
+  right: 15px;
+  bottom:-10px;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 16px;
+  justify-content: space-between;
+}
+
+.bloc-count p{
+  margin: 0;
+}
+
+.bloc-count .likeCount{
+  background: url(../assets/images/icons8-aimer-30.png)no-repeat;
+  background-size:  20px 20px;
+  background-position: top right;
+  padding-right:22px;
+  display: block;
+  height: 30px;
+}
+
+
+.photographer-gallery{
+  position: relative;
+}
+
+.filter-box{
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: absolute;
+  left: 6em;
+  top:-22px;
+ 
+
+}
+
+.filter-box p{
+  margin-right: 10px;
+  font-weight: bold;
+}
+.filter-box ul {
+  background:#901C1C;
+  color: #fff;
+  -webkit-box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.57); 
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.57);
+    border-radius: 5px;
+    list-style: none;
+    padding:5px;
+   position: relative; 
+   width: 160px;
+   height: 25px;
+
+}
+
+.filter-box ul:hover {
+  height: auto;
+}
+
+
+
+.filter-box ul:hover li{
+  position: inherit;
+  z-index: 0;
+  top: inherit;
+}
+
+
+.filter-box li.like{
+  border-top: 1px solid rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding: 8px ;
+  position: absolute;
+  z-index: -5;
+  top:-50px;
+}
+
+.filter-box li.title{
+  position: absolute ;
+  z-index: -5;
+  top:-40px;
+  
+}
+
+.filter-box li{
+  padding: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  animation: slidein;
 }
