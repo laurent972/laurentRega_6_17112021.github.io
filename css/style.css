@@ -41,7 +41,8 @@ h1 {
     gap: 1em 1em; 
     grid-template-areas: 
       "item1 item2 item3"; 
-    align-items: center;   
+    align-items: center; 
+  padding-left: 15px;  
 }
 
 .photograph-header article{

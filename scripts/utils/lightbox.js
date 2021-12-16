@@ -60,10 +60,20 @@ async function lightbox() {
                     document.querySelector('.lightbox__container').remove(); 
                     currentLink--; //Décrementation lien précédent
                     if(currentLink == 0){
-                        preview();
+                        
                         document.querySelector('.lightbox__prev').remove(); 
+                        if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                          previewVideo ();                   
+                      }else{ 
+                          preview();
+                      }
                     }else{
-                        preview();
+                      if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                          previewVideo ();                   
+                      }else{ 
+                          preview();
+                      }
+                     
                     }    
                 });
                 //Affichage image suivante
@@ -72,10 +82,18 @@ async function lightbox() {
                     document.querySelector('.lightbox__container').remove(); 
                     currentLink++; //Incrementation lien suivant
                     if(currentLink>= gallery.length-1){
+                      if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                        previewVideo ();                   
+                    }else{ 
                         preview();
+                    }
                         document.querySelector('.lightbox__next').remove(); 
                     }else{
-                        preview();
+                      if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                        previewVideo ();                   
+                      }else{ 
+                          preview();
+                      }
                     }
                 });               
             })           
