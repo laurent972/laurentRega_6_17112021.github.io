@@ -6,8 +6,10 @@ function ficheFactory(data) {
     //Construction du bloc affichage fiche 
     function getFicheDOM() {
         const main = document.querySelector('main');
+        main.setAttribute('role','main')
         const photographHeader = document.querySelector('.photograph-header');
         const contact = document.createElement( 'article' );
+        contact.setAttribute('role','article')
         contact.classList.add('portrait-info');
         const count = document.createElement('div');
         count.classList.add('bloc-count');
@@ -15,8 +17,10 @@ function ficheFactory(data) {
         const spanImg = document.createElement('span');
         img.setAttribute("src", picture);
         img.setAttribute("alt", `Portrait de ${name}, ${city}-${country}`);
+        img.setAttribute("aria-label", `Portrait de ${name}, ${city}`);
+        img.setAttribute("role", `img`);
         const h1 = document.createElement( 'h1' );
-        const location = document.createElement('p');
+        const location = document.createElement('h2');
         location.classList.add('location');
         const tarif = document.createElement('p');
         const info = document.createElement('p');
@@ -58,7 +62,7 @@ function galleryFactory(data){
                 galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
                     <a href="assets/photographers/${photographerId}/${linkedVideo}" class="gallery-img-link">
-                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph ${title}" width="150" title="${title}">
+                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph ${title}"  title="${title}" aria-label="${title}" role="video">
                     </a>
                    <div class="gal-info">
                     <h3>${title}</h3>
@@ -70,7 +74,7 @@ function galleryFactory(data){
                 galleryDisplay.innerHTML +=`
                 <li class="gallery-item">
                     <a href="assets/photographers/${photographerId}/${linked}" class="gallery-img-link">
-                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph ${title}" width="150" title="${title}">
+                    <img src="assets/photographers/${photographerId}/thumb/${linked}" alt="Photograph ${title}"  title="${title}" aria-label="${title}" role="img">
                     </a>
                     <div class="gal-info">
                     <h3>${title}</h3>

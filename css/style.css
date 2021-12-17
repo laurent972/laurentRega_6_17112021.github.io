@@ -71,7 +71,7 @@ h1 {
   margin: 0;
 }
 
-.photograph-header article p.location{
+.photograph-header article h2{
   font-size: 1.5em;
   color: #901C1C;
 }
@@ -107,6 +107,13 @@ h1 {
     font-size: 36px;
     margin-bottom: 5px;
     font-weight: 400;
+}
+
+.photographer_section article h3 {
+  color: #901C1C;
+  font-size: 16px;
+  margin: 5px;
+  font-weight: 400;
 }
 
 .photographer_section article a {

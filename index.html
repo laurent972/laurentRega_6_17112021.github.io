@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="fr">
+  <head role=”banner”>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -9,13 +9,13 @@
   </head>
   <body>
     <header>
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo"  title="Logo site : Fiesheye" alt="Logo du site Fisheye"/>
+      <a href="index.html" aria-label="Retour accueil">
+        <img src="assets/images/logo.png" class="logo"  title="Logo site : Fisheye site de photographes" alt="Logo du site Fisheye" role="Retour à l'accueil" Aria-label="Logo du site"/>
       </a>
         <h1>Nos photographes</h1>
     </header>
-    <main id="main">
-        <section class="photographer_section"></section>
+    <main id="main" role="main">
+        <section class="photographer_section" role="region" aria-label="Affichage photographes"></section>
     </main>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/pages/index.js"></script>

@@ -36,6 +36,8 @@ async function lightbox() {
                     newImg.classList.add('lightbox__container')
                     let imgFull = document.createElement('img');
                     imgFull.setAttribute('src', gallery[currentLink].href);
+                    imgFull.setAttribute('role', 'img');
+                    imgFull.setAttribute('alt', 'photographie de ');
                     newImg.appendChild(imgFull);
                     newLightbox.appendChild(newImg);
                 }
