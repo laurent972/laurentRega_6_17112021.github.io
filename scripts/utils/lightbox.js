@@ -55,14 +55,13 @@ async function lightbox() {
                 close.addEventListener('click', (e) => {
                     document.querySelector('.lightbox').remove();  
                 });
-
+                
                 //Affichage image precedente
                 const previousButton = document.querySelector('.lightbox__prev');
                 previousButton.addEventListener('click', (e) =>{
                     document.querySelector('.lightbox__container').remove(); 
                     currentLink--; //Décrementation lien précédent
                     if(currentLink == 0){
-                        
                         document.querySelector('.lightbox__prev').remove(); 
                         if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
                           previewVideo ();                   
@@ -97,7 +96,64 @@ async function lightbox() {
                           preview();
                       }
                     }
-                });               
+                });
+                
+            // KeyboardEvents ==> Accessibility//
+                //Close lightbox
+                window.addEventListener("keydown", function (event) {
+                  if (event.defaultPrevented) {
+                    return; 
+                  }
+                
+                  switch (event.key) {
+                    case "ArrowLeft":
+                      document.querySelector('.lightbox__container').remove(); 
+                      currentLink--; //Décrementation lien précédent
+                      if(currentLink == 0){
+                          document.querySelector('.lightbox__prev').remove(); 
+                          if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                            previewVideo ();                   
+                        }else{ 
+                            preview();
+                        }
+                      }else{
+                        if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                            previewVideo ();                   
+                        }else{ 
+                            preview();
+                        }
+                      }    
+                      break;
+                    case "ArrowRight":
+                      document.querySelector('.lightbox__container').remove(); 
+                      currentLink++; //Incrementation lien suivant
+                      if(currentLink>= gallery.length-1){
+                        if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                          previewVideo ();                   
+                      }else{ 
+                          preview();
+                      }
+                          document.querySelector('.lightbox__next').remove(); 
+                      }else{
+                        if(gallery[currentLink].href.includes('.mp4')){  //Distinction image / video au chargement de la lightBox
+                          previewVideo ();                   
+                        }else{ 
+                            preview();
+                        }
+                      }
+                      break;
+              
+                    case "Escape":
+                      document.querySelector('.lightbox').remove();  
+                      break;
+                    default:
+                      return; 
+                      
+                  }
+                
+                  // Annuler l'action par défaut pour éviter qu'elle ne soit traitée deux fois.
+                  event.preventDefault();
+                }, true);
             })           
         }
 }
