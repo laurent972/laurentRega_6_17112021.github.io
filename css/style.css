@@ -159,7 +159,7 @@ ul.gal{
 .gal-info{
   display: flex;
   justify-content: space-between;
-  width: 220px;
+  width: 290px;
   margin: 0 auto;
   align-items: center;
 }
@@ -178,8 +178,8 @@ ul.gal{
 
 
 .gal a{
-  width: 220px;
-  height:220px;
+  width: 290px;
+  height:290px;
   overflow: hidden;
   background:#fff;
   border-radius: 10px;
