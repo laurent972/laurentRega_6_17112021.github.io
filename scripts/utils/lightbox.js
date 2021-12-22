@@ -1,9 +1,15 @@
 async function lightbox() {
   // eslint-disable-next-line no-undef
   await displayGallery();
+
   const gallery = document.querySelectorAll('.gallery-img-link');
   for (let i = 0; i < gallery.length; i += 1) {
     const str = gallery[i].href; // Récupération de la chaine de caractère lien
+    let title = str.substring(str.lastIndexOf('/') + 1);
+    title = title.replace('_', ' ');
+    title = title.replace('_', ' ');
+    title = title.replace('.mp4', ' ');
+    title = title.replace('.jpg', ' ');
     gallery[i].addEventListener('click', (e) => {
       e.preventDefault();
       let currentLink = i;
@@ -15,25 +21,31 @@ async function lightbox() {
       function previewVideo() {
         const newImg = document.createElement('div');
         newImg.classList.add('lightbox__container');
+        const h3 = document.createElement('h3');
         const video = document.createElement('video');
         video.setAttribute('controls', '');
         const source = document.createElement('source');
+        h3.textContent = title;
         source.setAttribute('src', gallery[currentLink].href);
         source.setAttribute('type', 'video/mp4');
         newImg.appendChild(video);
+        newImg.appendChild(h3);
         video.appendChild(source);
         newLightbox.appendChild(newImg);
       }
       // Affichage image
       function preview() {
         const newImg = document.createElement('div');
+        const h3 = document.createElement('h3');
         newImg.classList.add('lightbox__container');
         const imgFull = document.createElement('img');
         imgFull.setAttribute('src', gallery[currentLink].href);
         imgFull.setAttribute('role', 'img');
         imgFull.setAttribute('alt', 'photographie de ');
+        h3.textContent = title;
         newImg.appendChild(imgFull);
         newLightbox.appendChild(newImg);
+        newImg.appendChild(h3);
       }
       if (str.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
         previewVideo();

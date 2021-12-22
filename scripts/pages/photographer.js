@@ -1,11 +1,15 @@
+/* eslint-disable no-multi-assign */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 const queryUrlId = window.location.search;
 const urlSearchParams = new URLSearchParams(queryUrlId);
 const id = urlSearchParams.get('id');
+const fullLikes = document.querySelector('.likeCount');
 
-let photographers = [];
-let medias = [];
-let count = 0;
+let totalLikes; // total des likes en bas de page
+let photographers = []; // liste des photographes
+let medias = []; // liste des images
+
 // Appel des photographes
 async function getPhotographers() {
   await fetch('data/photographers.json')
@@ -57,7 +61,6 @@ async function displayGallery() {
     gallery = medias.filter((media) => media.photographerId == id);
   }
   // eslint-disable-next-line no-shadow
-  gallery.map((gallery) => count += gallery.likes);
   const photographerGallery = document.querySelector('.photographer-gallery');
   // eslint-disable-next-line no-undef
   const uniqGallery = galleryFactory(gallery);
@@ -65,11 +68,26 @@ async function displayGallery() {
   photographerGallery.appendChild(setPictures);
   // eslint-disable-next-line prefer-const
   logId = gallery[0].photographerId;
+  const photoLikes = document.querySelectorAll('.likes');
+  photoLikes.forEach((element) => {
+    let likes = Math.floor(element.innerText);
+    element.addEventListener('click', () => {
+      const upLikes = likes += 1;
+      element.innerHTML = upLikes;
+      element.setAttribute('data-likes', upLikes);
+      // eslint-disable-next-line no-use-before-define
+      countTotalLikes();
+    });
+  });
 
-  const blocCount = document.querySelector('.bloc-count');
-  blocCount.innerHTML += `<p class="likeCount">${count}</p>`;
-  return (logId, count);
-  // Récupération du currentID pour affichage des liens relatif au photographe
+  function countTotalLikes() {
+    const everyLikes = Array.from(document.querySelectorAll('button[data-likes]'));
+    totalLikes = everyLikes.reduce((total, element) => total + Number(element.dataset.likes), 0);
+    fullLikes.textContent = totalLikes;
+  }
+  countTotalLikes();
+
+  return (logId);
 }
 
 // eslint-disable-next-line no-undef
