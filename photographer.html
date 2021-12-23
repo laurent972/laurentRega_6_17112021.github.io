@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head role=”banner”>
+  <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -13,21 +13,21 @@
         <img src="assets/images/logo.png" class="logo"  title="Logo site : Fisheye site de photographes" alt="Logo du site Fisheye" role="img" Aria-label="Logo du site"/>
       </a>
     </header>
-    <main id="main" role="main">
-      <section class="photograph-header" role="region" aria-label="Affichage fiche du photographe">
+    <main id="main">
+      <section class="photograph-header" aria-label="Affichage fiche du photographe">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
-      <section class="photographer-gallery" role="region" aria-label="Galerie du photographe">
+      <section class="photographer-gallery" aria-label="Galerie du photographe">
         <div class="filter-box">
             <p>Trier par</p>
             <ul role="list" aria-haspopup="true">
-              <li class="base" role="listitem" aria-label="Pas de critères de tri">
+              <li class="base"  aria-label="Pas de critères de tri">
                 -------
               </li>
-              <li class="like" role="listitem" aria-label="Trier par popularité">
+              <li class="like" aria-label="Trier par popularité">
                   Trier par popularité
               </li>
-              <li class="title" role="listitem" aria-label="Trier par titre">
+              <li class="title"  aria-label="Trier par titre">
                 Trier par titre
             </li>
             </ul>  
@@ -38,18 +38,18 @@
         <p class="price"></p>
       </div> 
     </main>
-    <div id="contact_modal" role="form" aria-label="Formulaire contact" aria-hidden=”true”>
+    <div id="contact_modal" role="form" aria-label="Formulaire contact">
 			<div class="modal">
 				<header role="banner">
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" alt="cross closing" aria-label="Close modal"/>
         </header>
 
-				<form method="get" action="" onsubmit="return validate()"; role="form">
+				<form method="get"  onsubmit="return validate()" role="form">
 					<div class="contact">
           
             <label for="prenom" aria-labelledby="prenom">
-              <legend>Prénom</legend></label>
+              Prénom</label>
               <input type="text" id="prenom" name="prenom">
             
           
@@ -61,7 +61,7 @@
 						<input type="email" id="email" name="email">
 
             <label for="message">Votre message</label>
-						<textarea type="text" id="message" name="message"></textarea>
+						<textarea  id="message" name="message"></textarea>
 
 					</div>
           <button class="send_button">Envoyer</button>
