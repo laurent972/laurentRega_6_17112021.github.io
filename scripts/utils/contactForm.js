@@ -53,13 +53,14 @@ inputs.forEach((input) => {
         break;
     }
     // eslint-disable-next-line no-return-assign
-    return data = {
+    return data = [
       dataPrenom, dataNom, dataMail, dataMessage,
-    };
+    ];
   });
 });
 
 validate.addEventListener('click', (e) => {
   e.preventDefault();
   closeModal();
+  console.log(data);
 });
