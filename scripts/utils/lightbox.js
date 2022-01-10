@@ -42,7 +42,7 @@ async function lightbox() {
         imgFull.setAttribute('src', gallery[currentLink].href);
         imgFull.setAttribute('role', 'img');
         imgFull.setAttribute('alt', 'photographie de ');
-        h3.textContent = title;
+       // h3.textContent = title;
         newImg.appendChild(imgFull);
         newLightbox.appendChild(newImg);
         newImg.appendChild(h3);
