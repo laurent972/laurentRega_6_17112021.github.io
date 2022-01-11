@@ -87,7 +87,7 @@ async function displayGallery() {
   }
   countTotalLikes();
 
-  return (logId);
+  return (logId, gallery);
 }
 
 // eslint-disable-next-line no-undef

@@ -36,8 +36,11 @@ function galleryFactory(data) {
                 </li>
             `;
       }
+   
     });
+   
     return (galleryDisplay);
+    
   }
   return { setPictures };
 }
