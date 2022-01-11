@@ -8,15 +8,16 @@ async function lightbox() {
   for (let i = 0; i < gallery.length; i += 1) {
     const str = gallery[i].href; // Récupération de la chaine de caractère lien
     gallery[i].addEventListener('click', (e) => {
-    
+     
       e.preventDefault();
       let currentLink = i;
       let currentTitle = i;
+    
       const container = document.body;
       const newLightbox = document.createElement('div'); // création de ma lightbox
       newLightbox.classList.add('lightbox');
       container.appendChild(newLightbox);
-      console.log(gallery.length);
+     
       // Affichage video
       function previewVideo() {
         const newImg = document.createElement('div');
@@ -68,12 +69,16 @@ async function lightbox() {
       // Affichage image precedente
       const previousButton = document.querySelector('.lightbox__prev');
       previousButton.addEventListener('click', () => {
+        
         document.querySelector('.lightbox__container').remove();
         currentLink -= 1;
         currentTitle -=1; // Décrementation lien précédent
-        if (currentLink === 0) {
+        if (currentLink < 0) {
+          currentLink = gallery.length-1;
+          currentTitle = gallery.length-1;
           if (gallery[currentLink].href.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
             previewVideo();
+          
           } else {
             preview();
           }
@@ -86,16 +91,18 @@ async function lightbox() {
       // Affichage image suivante
       const nextButton = document.querySelector('.lightbox__next');
       nextButton.addEventListener('click', () => {
-        
+        document.querySelector('.lightbox__container').remove();
         currentLink += 1;// Incrementation lien suivant
         currentTitle +=1;
         if (currentLink >= gallery.length - 1) {
+          currentLink = 0;
+          currentTitle = 0;
           if (gallery[currentLink].href.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
             previewVideo();
           } else {
             preview();
           }
-      
+         
         } else if (gallery[currentLink].href.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
           previewVideo();
         } else {
@@ -111,11 +118,12 @@ async function lightbox() {
 
         switch (event.key) {
           case 'ArrowLeft':
-         
+            document.querySelector('.lightbox__container').remove();
             currentLink -= 1; // Décrementation lien précédent
-            currentLink -= 1;
-            if (currentLink === 0) {
-             
+            if (currentLink < 0) {
+              
+              currentLink = gallery.length;
+            currentTitle = gallery.length;
               if (gallery[currentLink].href.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
                 previewVideo();
               } else {
@@ -128,16 +136,18 @@ async function lightbox() {
             }
             break;
           case 'ArrowRight':
-           
+            document.querySelector('.lightbox__container').remove();
             currentLink += 1;
             currentTitle +=1; // Incrementation lien suivant
             if (currentLink >= gallery.length - 1) {
+              currentLink = 0;
+              currentTitle = 0;
               if (gallery[currentLink].href.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
                 previewVideo();
               } else {
                 preview();
               }
-            
+             
             } else if (gallery[currentLink].href.includes('.mp4')) { // Distinction image / video au chargement de la lightBox
               previewVideo();
             } else {
