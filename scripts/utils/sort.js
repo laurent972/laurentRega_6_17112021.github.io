@@ -21,18 +21,31 @@ function byTitles(item1, item2) {
   return 0;
 }
 
+function byDate(item1, item2) {
+  const dat1 = parseInt(item1.date,10);
+  const dat2 = parseInt(item2.date,10);
+
+  if (dat1 > dat2) {
+    return 1;
+  } if (dat2 > dat1) {
+    return -1;
+  }
+  return 0;
+}
+
 // Fonction de tri affichage
 // eslint-disable-next-line no-unused-vars
 async function tri() {
   const filterLike = document.querySelector('.like');
   const filterTitles = document.querySelector('.title');
   const filterBase = document.querySelector('.base');
+  //const filterDate = document.querySelector('.date');
   // eslint-disable-next-line no-undef
   const linkSortLikes = `photographer.html?id=${id}&sortByLikes`;
   // eslint-disable-next-line no-undef
   const linkSortTitles = `photographer.html?id=${id}&sortByTitles`;
   // eslint-disable-next-line no-undef
-  const linkSort = `photographer.html?id=${id}`;
+  const linkSort = `photographer.html?id=${id}&sortByDate`;
 
   filterLike.addEventListener('click', () => {
     location.href = linkSortLikes;
@@ -54,4 +67,12 @@ async function tri() {
   filterBase.addEventListener('keypress', () => {
     location.href = linkSort;
   });
+
+
+  // filterDate.addEventListener('click', () => {
+  //   location.href = linkSort;
+  // });
+  // filterDate.addEventListener('keypress', () => {
+  //   location.href = linkSort;
+  // });
 }

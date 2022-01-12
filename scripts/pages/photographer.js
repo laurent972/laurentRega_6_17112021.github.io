@@ -39,12 +39,14 @@ async function displayFiche() {
 }
 displayFiche();
 
+
 // Affichage de la galerie d'images
 // eslint-disable-next-line no-unused-vars
 async function displayGallery() {
   await getPictures();
   let gallery = [];
   let logId;
+
   // Filtre d'affichage de la galerie d'images
   if (queryUrlId.includes('&sortByLikes')) {
     // eslint-disable-next-line eqeqeq
@@ -56,9 +58,17 @@ async function displayGallery() {
     gallery = medias.filter((media) => media.photographerId == id);
     // eslint-disable-next-line no-undef
     gallery = gallery.sort(byTitles);// Tri par likes
-  } else {
+
+  }else if (queryUrlId.includes('&sortByDate')) {
+      // eslint-disable-next-line eqeqeq
+      gallery = medias.filter((media) => media.photographerId == id);
+      // eslint-disable-next-line no-undef
+      gallery = gallery.sort(byDate);// Tri par likes
+
+  }else {
     // eslint-disable-next-line eqeqeq
     gallery = medias.filter((media) => media.photographerId == id);
+  
   }
   // eslint-disable-next-line no-shadow
   const photographerGallery = document.querySelector('.photographer-gallery');
@@ -86,7 +96,6 @@ async function displayGallery() {
     fullLikes.textContent = totalLikes;
   }
   countTotalLikes();
-
   return (logId, gallery);
 }
 

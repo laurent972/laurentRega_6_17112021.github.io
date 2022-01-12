@@ -15,22 +15,24 @@
     </header>
     <main id="main">
       <section class="photograph-header" aria-label="Affichage fiche du photographe">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button">Contactez-moi</button>
       </section>
       <section class="photographer-gallery" aria-label="Galerie du photographe">
-        <div class="filter-box">
-            <p>Trier par</p>
-            <ul role="list" aria-haspopup="true">
-              <li class="base"  aria-label="Pas de critères de tri">
-                -------
+        <div class="filter-box" tabindex="0">
+          <p>Trier par</p>
+          <ul role="list" aria-haspopup="true" >
+            <li class="base"  aria-label="Date" tabindex="0">
+              Date <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18" height="18">
               </li>
-              <li class="like" aria-label="Trier par popularité">
-                  Trier par popularité
-              </li>
-              <li class="title"  aria-label="Trier par titre">
-                Trier par titre
+          <li class="title"  aria-label="Trier par titre" tabindex="0">
+          Titre
+        </li>
+       
+        
+            <li class="like" aria-label="Trier par popularité" tabindex="0"   >
+            Popularité
             </li>
-            </ul>  
+          </ul>
         </div>
       </section>  
       <div class="bloc-count">
@@ -38,36 +40,37 @@
         <p class="price"></p>
       </div> 
     </main>
-    <div id="contact_modal" role="form" aria-label="Formulaire contact">
-			<div class="modal">
+    <dialog  id="contact_modal" role="form" aria-label="Formulaire contact" tabindex="0" class="modal">
+			
 				<header role="banner">
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" alt="cross closing" aria-label="Close modal"/>
         </header>
 
-				<form method="get"  onsubmit="return validate()" role="form">
-					<div class="contact">
-          
+				<form method="get"  onsubmit="return validate()" role="form" tabindex="0">
+					<div class="contact" tabindex="1">
+            <div class="formData">
             <label for="prenom" aria-labelledby="prenom">
               Prénom</label>
-              <input type="text" id="prenom" name="prenom">
-            
-          
-          
+              <input class="text-control" type="text" id="prenom" name="prenom" tabindex="1">
+            </div>
+            <div class="formData">
             <label for="nom">Nom</label>
-						<input type="text" id="nom" name="nom">
-
+						<input class="text-control" type="text" id="nom" name="nom" tabindex="1">
+          </div>
+          <div class="formData">
             <label for="email">Email</label>
-						<input type="email" id="email" name="email">
-
+						<input class="text-control" type="email" id="email" name="email" tabindex="1">
+          </div>
+          <div class="formData">
             <label for="message">Votre message</label>
-						<textarea  id="message" name="message"></textarea>
-
+						<textarea class="text-control" id="message" name="message" tabindex="1"></textarea>
+          </div>
 					</div>
-          <button class="send_button">Envoyer</button>
+          <button class="send_button" tabindex="1">Envoyer</button>
 				</form>
-			</div>
-		</div>
+			
+		</dialog>
     <script src="scripts/utils/sort.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/factories/fiche.js"></script>

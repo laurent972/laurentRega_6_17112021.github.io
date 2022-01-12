@@ -34,7 +34,7 @@ function photographerFactory(data) {
     spanImg.appendChild(img);
     href.appendChild(spanImg);
     href.appendChild(h2);
-    href.appendChild(location);
+    article.appendChild(location);
     location.appendChild(h3);
     location.appendChild(info);
     location.appendChild(tarif);

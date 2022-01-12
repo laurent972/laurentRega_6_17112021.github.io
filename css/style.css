@@ -207,7 +207,6 @@ ul.gal{
   font-size: 13px;
   font-weight: bold;
   display: flex;
-  flex-direction: row-reverse;
   font-size: 16px;
   justify-content: space-between;
 }
@@ -255,7 +254,7 @@ ul.gal{
     padding:5px;
    position: relative; 
    width: 160px;
-   height: 25px;
+   height: 32px;
 
 }
 
@@ -273,25 +272,29 @@ ul.gal{
 
 
 .filter-box li.like{
-  border-top: 1px solid rgba(255,255,255,0.5);
-  border-bottom: 1px solid rgba(255,255,255,0.5);
+
   padding: 8px ;
   position: absolute;
   z-index: -5;
   top:-50px;
 }
 
+.filter-box li.base img{
+  float: right;
+}
+
 .filter-box li.title{
   position: absolute ;
   z-index: -5;
   top:-40px;
-  
+  border-top: 1px solid rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.5);
 }
 
 .filter-box li{
   padding: 5px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   animation: slidein;
 }
 
