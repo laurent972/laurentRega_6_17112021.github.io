@@ -5,9 +5,6 @@ const queryUrlId = window.location.search;
 const urlSearchParams = new URLSearchParams(queryUrlId);
 const id = urlSearchParams.get('id');
 const fullLikes = document.querySelector('.likeCount');
-const filterBox = document.querySelector('.filter-box');
-const filterboxDiv = document.querySelector('.filter-box .focus');
-
 
 let totalLikes; // total des likes en bas de page
 let photographers = []; // liste des photographes
@@ -43,8 +40,6 @@ async function displayFiche() {
 displayFiche();
 
 
-
-
 // Affichage de la galerie d'images
 // eslint-disable-next-line no-unused-vars
 async function displayGallery() {
@@ -54,34 +49,17 @@ async function displayGallery() {
 
   // Filtre d'affichage de la galerie d'images
   if (queryUrlId.includes('&sortByLikes')) {
-
-    filterboxDiv.innerHTML=`
-   
-    <button onClick="clickLikes()">Popularité</button>
-    <button onClick="clickDate()">Date <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18"></button> 
-    <button onClick="clickTitre()">Titre</button>
-   
-    `
     // eslint-disable-next-line eqeqeq
     gallery = medias.filter((media) => media.photographerId == id);
     // eslint-disable-next-line no-undef
     gallery = gallery.sort(byLikes);// Tri par likes
- 
   } else if (queryUrlId.includes('&sortByTitles')) {
-    filterboxDiv.innerHTML=`
-   
-    <button onClick="clickTitre()">Titre</button>
-    <button onClick="clickLikes()">Popularité</button>
-    <button onClick="clickDate()">Date <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18"></button> 
-   
-    `
     // eslint-disable-next-line eqeqeq
     gallery = medias.filter((media) => media.photographerId == id);
     // eslint-disable-next-line no-undef
     gallery = gallery.sort(byTitles);// Tri par likes
 
   }else if (queryUrlId.includes('&sortByDate')) {
-  
       // eslint-disable-next-line eqeqeq
       gallery = medias.filter((media) => media.photographerId == id);
       // eslint-disable-next-line no-undef
@@ -121,14 +99,5 @@ async function displayGallery() {
   return (logId, gallery);
 }
 
-
-filterboxDiv.addEventListener('focusin',(e)=>{
-  console.log('toto');
-  const buttons=document.querySelectorAll('.filter-box div button');
-    buttons.forEach(element => {
-      console.log(element);
-        element.style.position = 'relative';
-        element.style.display = 'block';
-        element.style.top = 'auto';
-    });
-});
+// eslint-disable-next-line no-undef
+tri();

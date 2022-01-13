@@ -33,46 +33,20 @@ function byDate(item1, item2) {
   return 0;
 }
 
+
 // Fonction de tri affichage
 // eslint-disable-next-line no-unused-vars
-async function tri() {
-  const filterLike = document.querySelector('.like');
-  const filterTitles = document.querySelector('.title');
-  const filterBase = document.querySelector('.base');
-  //const filterDate = document.querySelector('.date');
-  // eslint-disable-next-line no-undef
-  const linkSortLikes = `photographer.html?id=${id}&sortByLikes`;
-  // eslint-disable-next-line no-undef
-  const linkSortTitles = `photographer.html?id=${id}&sortByTitles`;
-  // eslint-disable-next-line no-undef
+async function clickDate() {
   const linkSort = `photographer.html?id=${id}&sortByDate`;
+  window.location.href = linkSort;
+}
 
-  filterLike.addEventListener('click', () => {
-    location.href = linkSortLikes;
-  });
-  filterLike.addEventListener('keypress', () => {
-    location.href = linkSortLikes;
-  });
+async function clickLikes() {
+  const linkSortLikes = `photographer.html?id=${id}&sortByLikes`;
+  window.location.href = linkSortLikes;
+}
 
-  filterTitles.addEventListener('click', () => {
-    location.href = linkSortTitles;
-  });
-  filterTitles.addEventListener('keypress', () => {
-    location.href = linkSortTitles;
-  });
-
-  filterBase.addEventListener('click', () => {
-    location.href = linkSort;
-  });
-  filterBase.addEventListener('keypress', () => {
-    location.href = linkSort;
-  });
-
-
-  // filterDate.addEventListener('click', () => {
-  //   location.href = linkSort;
-  // });
-  // filterDate.addEventListener('keypress', () => {
-  //   location.href = linkSort;
-  // });
+async function clickTitre() {
+  const linkSortTitles = `photographer.html?id=${id}&sortByTitles`;
+  window.location.href = linkSortTitles;
 }

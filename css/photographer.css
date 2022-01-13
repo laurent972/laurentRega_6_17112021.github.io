@@ -31,6 +31,25 @@ dialog[open]:not(:focus-within) {
     margin: 0 100px;
 }
 
+button{
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button img{
+ position: relative;
+ top:3px;
+}
+
+
 .send_button,
 .contact_button {
     font-size: 20px;
