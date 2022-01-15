@@ -1,0 +1,34 @@
+@media only screen and (max-width: 980px) { 
+
+  .photograph-header{
+    grid-template-columns:100% 100% 100% ; 
+   height: 100%;
+    grid-template-areas:
+    "item3" 
+    "item1" 
+    "item2"
+     ;
+     padding: 2vw ;
+  }
+
+  
+  .photograph-header article {
+    grid-area: item1;
+    text-align: center;
+}
+
+.gal li {
+  width: 100%;
+  clear: both;
+  margin-bottom: 20px;
+}
+
+.bloc-count{
+  right:55px;
+}
+
+.photographer_section{
+  grid-template-columns: auto;
+}
+
+}
