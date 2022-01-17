@@ -56,24 +56,19 @@ async function displayGallery() {
   if (queryUrlId.includes('&sortByLikes')) {
 
     filterboxDiv.innerHTML=`
-   
     <button onClick="clickLikes()">Popularité <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18"></button>
     <button onClick="clickDate()">Date</button> 
     <button onClick="clickTitre()">Titre</button>
-   
     `
     // eslint-disable-next-line eqeqeq
     gallery = medias.filter((media) => media.photographerId == id);
     // eslint-disable-next-line no-undef
     gallery = gallery.sort(byLikes);// Tri par likes
- 
   } else if (queryUrlId.includes('&sortByTitles')) {
     filterboxDiv.innerHTML=`
-   
     <button onClick="clickTitre()">Titre <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18"></button>
     <button onClick="clickLikes()">Popularité</button>
     <button onClick="clickDate()">Date</button> 
-   
     `
     // eslint-disable-next-line eqeqeq
     gallery = medias.filter((media) => media.photographerId == id);
@@ -81,7 +76,6 @@ async function displayGallery() {
     gallery = gallery.sort(byTitles);// Tri par likes
 
   }else if (queryUrlId.includes('&sortByDate')) {
-  
       // eslint-disable-next-line eqeqeq
       gallery = medias.filter((media) => media.photographerId == id);
       // eslint-disable-next-line no-undef
