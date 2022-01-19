@@ -56,7 +56,7 @@ async function displayGallery() {
   if (queryUrlId.includes('&sortByLikes')) {
 
     filterboxDiv.innerHTML=`
-    <button onClick="clickLikes()">Popularité <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18"></button>
+    <button onClick="clickLikes()">Popularité <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" alt="icone fleche" width="18"></button>
     <button onClick="clickDate()">Date</button> 
     <button onClick="clickTitre()">Titre</button>
     `
@@ -66,7 +66,7 @@ async function displayGallery() {
     gallery = gallery.sort(byLikes);// Tri par likes
   } else if (queryUrlId.includes('&sortByTitles')) {
     filterboxDiv.innerHTML=`
-    <button onClick="clickTitre()">Titre <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" width="18"></button>
+    <button onClick="clickTitre()">Titre <img src="assets/images/4781842_arrow_chevron_direction_down_move_icon.png" alt="icone fleche" width="18"></button>
     <button onClick="clickLikes()">Popularité</button>
     <button onClick="clickDate()">Date</button> 
     `
